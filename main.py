@@ -1,28 +1,22 @@
 # File created by Joshua Darlucio
 '''
 Sources: 
+- https://automatetheboringstuff.com/2e/chapter12/
+- 
 '''
 '''
 Goals:
 1) Pull ride names out of website
-2) Ask user their favorite type of ride
-3) Use favorite ride to build a list of what rides to ride, based on wait times
+2) List wait times from shortest to longest
+
+If time: Create 
 
 '''
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup 
 
 # URL for Disneyland wait times
-url = 'https://www.thrill-data.com/waits/park/dlr/disneyland/'
-
-page = requests.get(url)
-soup = BeautifulSoup(page.content, 'html.parser')
-
-# Find all the ride names and wait times
-rides = soup.find_all('div', class_='plot-container plotly')
-ride_data = {}
-for ride in rides:
-    name = ride.find('div', class_='col-sm-8 ride-name').text.strip()
-    wait_time = ride.find('div', class_='col-sm-4 ride-wait-time').text.strip()
-    ride_data[name] = int(wait_time)
-
+url = ('https://queue-times.com/en-US/parks/16/queue_times')
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+wait_times = soup.find_all("div", class_="has-text-weight-normal")
