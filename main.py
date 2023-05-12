@@ -1,22 +1,22 @@
-# File created by Joshua Darlucio
-'''
-Sources: 
-- https://automatetheboringstuff.com/2e/chapter12/
-- 
-'''
-'''
-Goals:
-1) Pull ride names out of website
-2) List wait times from shortest to longest
-
-If time: Create 
-
-'''
 import requests
-from bs4 import BeautifulSoup 
+from bs4 import BeautifulSoup
+import pandas as pd
 
-# URL for Disneyland wait times
-url = ('https://queue-times.com/en-US/parks/16/queue_times')
+url = "https://www.laughingplace.com/w/p/disneyland-current-wait-times/"
 response = requests.get(url)
-soup = BeautifulSoup(response.text, "html.parser")
-wait_times = soup.find_all("div", class_="has-text-weight-normal")
+
+soup = BeautifulSoup(response.content, "html.parser")
+
+ride_table = soup.find("table", {"class": "lp_attraction"})
+ride_rows = ride_table.find_all("tr")[1:]
+
+ride_names = []
+wait_times = []
+
+for row in ride_rows:
+    columns = row.find_all("t")
+    ride_names.append(columns[0].text.strip())
+    wait_times.append(columns[1].text.strip())
+
+df = pd.DataFrame({'Ride Name': ride_names, 'Wait Time': wait_times})
+df.to_excel('Disneyland Wait Times.xlsx', index=False)
