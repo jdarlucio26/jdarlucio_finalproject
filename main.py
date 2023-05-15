@@ -8,6 +8,7 @@ https://realpython.com/python-web-scraping-practical-introduction/
 https://www.youtube.com/watch?v=z1nN5pvhdA8
 https://www.geeksforgeeks.org/create-first-gui-application-using-python-tkinter/
 https://platforuma.medium.com/web-scraping-using-python-gui-31c6c00dd235
+https://bcpsj-my.sharepoint.com/personal/ccozort_bcp_org/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fccozort%5Fbcp%5Forg%2FDocuments%2FDocuments%2F000%5FIntro%20to%20Programming%2F2022%5F2023%5FSpring%2FCode%2Fexamples%2Fselenium%5Fchromedriver%5Fscrape%2Epy&parent=%2Fpersonal%2Fccozort%5Fbcp%5Forg%2FDocuments%2FDocuments%2F000%5FIntro%20to%20Programming%2F2022%5F2023%5FSpring%2FCode%2Fexamples
 
 GOALS:
 1) Screen Scrape Data from website to print in terminal ✔️
@@ -57,7 +58,7 @@ def display_wait_time():
 # Name of Screen
 root = Tk()
 root.title("Disneyland Ride Wait Times")
-root.geometry("500x400")
+root.geometry("600x350")
 
 # First Title 
 label1 = Label(root, text="Disneyland Current Wait Times", font=('arial',23), fg="purple")
@@ -69,11 +70,11 @@ label2.place(x=138,y=50)
 
 # Provides a box that allows user to type in response. *Reponse must match website name of ride*
 entry = Entry(root, width=40)
-entry.place(x=55,y=80)
+entry.place(x=165,y=88)
 
 # Button on screen that submits user response
 button = Button(root, width=10, text="Get Wait Time", command=display_wait_time)
-button.place(x=180, y=130)
+button.place(x=250, y=130)
 
 # Shows result of current wait time in red font, under button
 result_label = tk.Label(root, text="", fg="red")
